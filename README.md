@@ -79,3 +79,23 @@ function selectionSort(data) {
 const sortedData = selectionSort(data);
 console.log(sortedData);
 ```
+
+### 삽입정렬 `평균O(n^2) 최악O(n^2) 메모리O(1)`
+1. 두 번째 인덱스부터 시작
+2. 해당 인덱스부터 앞쪽으로 이동하면서, 자신보다 더 작은 수가 나타나기 직전까지 swap
+```js
+function insertionSort(data) {
+  for (let i = 1; i < data.length; i++) {
+    let origin = i;
+    while (data[i] < data[i - 1]) {
+      let tmp = data[i];
+      data[i] = data[i - 1];
+      data[i - 1] = tmp;
+
+      i--;
+    }
+    i = origin;
+  }
+  return data;
+}
+```
