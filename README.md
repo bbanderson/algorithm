@@ -26,12 +26,12 @@ for (let i = 0; i < 데이터길이 - 1; i++) {
 
 최적화 발상
 
-연산을 거듭할 때마다 맨 끝에는 그 횟수마다 가장 큰 수가 쌓이게 된다.  
-즉 연산 횟수만큼 "덜" 순회해도 된다는 뜻이다.
+연산을 거듭할 때마다 맨 끝에는 사이클마다 가장 큰 수가 쌓이게 된다.  
+즉 내부 반복문에서는 사이클 횟수만큼 "덜" 순회해도 된다는 뜻이다.
 
 ```js
 for (let i = 0; i < 데이터길이 - 1; i++) {
-  for (let j = 0; j < 데이터길이 - index - 1; j++) {
+  for (let j = 0; j < 데이터길이 - i - 1; j++) {
     if (앞데이터 > 뒷데이터) {
       swap(앞데이터, 뒷데이터);
     }
@@ -53,4 +53,29 @@ for (let i = 0; i < 데이터길이 - 1; i++) {
 
   if (!isSwapped) break;
 }
+```
+
+### 선택정렬 `평균O(n^2) 최악O(n^2) 메모리O(1)`
+1. 주어진 데이터 중 최소값을 찾는다.
+2. 해당 최소값을 데이터 맨 앞에 위치한 값과 교체한다.
+3. 맨 앞의 위치를 뺀 나머지 데이터를 동일한 방법으로 반복한다.
+
+```js
+function selectionSort(data) {
+  // 마지막 남은 두 인접한 수는 비교할 필요가 없으므로 반복 횟수를 1 줄인다.
+  for (let i = 0; i < data.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < data.length; j++) {
+      if (data[minIndex] > data[j]) {
+        minIndex = j;
+      }
+    }
+    let tmp = data[i];
+    data[i] = data[minIndex];
+    data[minIndex] = tmp;
+  }
+  return data;
+}
+const sortedData = selectionSort(data);
+console.log(sortedData);
 ```
