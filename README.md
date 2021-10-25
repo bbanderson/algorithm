@@ -99,3 +99,27 @@ function insertionSort(data) {
   return data;
 }
 ```
+
+### 동적 계획법과 분할정복
+- 공통점
+  - 문제를 잘게 쪼개서 가장 작은 단위로 분할한다.
+- 차이점
+  - 동적 계획법
+    - 부분 문제는 중복되어 상위 문제 해결 시 재활용된다.
+    - Memoization 기법을 사용한다.
+    - 상향식
+  - 분할 정복
+    - 부분 문제는 서로 중복되지 않는다.
+    - Memoization 기법을 사용하지 않는다.
+    - 하향식
+> Memoization : 프로그램 실행 시 이전에 계산한 값을 저장하여 다시 계산하지 않도록 하여 전체 실행 속도를 빠르게 하는 기법
+
+기존 재귀함수의 느린 성능을 보완!
+```js
+function fibonacci(num) {
+  if (num <= 1) {
+    return num;
+  }
+  return fibonacci(num - 1) + fibonacci(num - 2);
+}
+```
